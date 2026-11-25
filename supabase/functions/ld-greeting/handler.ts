@@ -121,8 +121,16 @@ export function greetingHandler(
         signal: AbortSignal.timeout(12000),
       });
       if (!answer.ok) {
-        console.warn("Greeting provider returned", answer.status);
-        await answer.body?.cancel().catch(() => {});
+        const details = await answer.json().catch(() => null);
+        const code = details?.error?.code;
+        const reason = [
+            "insufficient_quota",
+            "rate_limit_exceeded",
+            "billing_hard_limit_reached",
+          ].includes(code)
+          ? code
+          : "other";
+        console.warn("Greeting provider returned", answer.status, reason);
         return json(503, { error: "unavailable" });
       }
       const text = greetingText(await answer.json());
