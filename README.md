@@ -14,6 +14,6 @@ Version 2.0 använder svensk tid och kl. 07:00 som standard. Välj tid, period o
 
 ## AI-hälsningar
 
-Välj **Skriv en hälsning** på ett firande, välj ton och tryck **Skapa med AI**. AI-förslag kräver ett inloggat och bekräftat konto. Du kan redigera och kopiera texten direkt. På telefonen lägger appen till tilltalsnamnet när firandet har en mottagare. OpenAI får bara typen av firande och vald ton. Förslaget kan även skrivas och kopieras utan AI.
+Välj **Skriv en hälsning** på ett firande, välj ton och tryck **Skapa med AI**. AI-förslag kräver ett inloggat och bekräftat konto. Du kan redigera och kopiera texten direkt. På telefonen lägger appen till tilltalsnamnet när firandet har en mottagare. OpenAI får bara typen av firande och vald ton. Förslaget kan även skrivas och kopieras utan AI. Spara ett valfritt telefonnummer under **Mina personer → Visa profil**. **Öppna SMS** öppnar ett utkast för den valda hälsningen i telefonens meddelandeapp.
 
 Lägg in en OpenAI-projektnyckel som `OPENAI_API_KEY` under [Edge Function Secrets](https://supabase.com/dashboard/project/vwzblmjkshlctgnwgxct/functions/secrets). Dispatch för hälsningar ligger i Edge-funktionen `ld-greeting`, med separat verifiering av användartoken. Migrationen för hälsningar begränsar användningen till 20 försök per konto och svensk kalenderdag. Kör `deno test supabase/tests/ld_greeting_test.ts` från repots rot.
